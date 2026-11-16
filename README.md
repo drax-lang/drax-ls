@@ -1,9 +1,9 @@
 # Drax editor support
 
-Editor plugins for the [Drax](../drax) language (`.dx` files).
+Editor plugins for the [Drax](https://github.com/drax-lang/drax) language (`.dx` files).
 
 ```
-drax-editors/
+drax-ls/
   server/   language server (Node, LSP over stdio)
   vscode/   VS Code extension (grammar, snippets, icon, LSP client)
   vim/      Vim/Neovim runtime files (syntax, indent, ftplugin) + LSP setup
@@ -26,6 +26,14 @@ cd server && npm install && npm test
 
 ## VS Code (`vscode/`)
 
+Install from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=drax-lang.drax-lang):
+
+```
+code --install-extension drax-lang.drax-lang
+```
+
+To build it from source:
+
 ```
 cd vscode && npm install && npm run package
 code --install-extension drax-lang-0.1.0.vsix --force
@@ -37,7 +45,7 @@ The language server is bundled in the extension (`drax.languageServer.enabled` t
 
 Syntax, indent and filetype work with any plugin manager:
 
-- vim-plug: `Plug '~/projects/opensource/drax-editors/vim'`
+- vim-plug: `Plug 'drax-lang/drax-ls', { 'rtp': 'vim' }`
 - native packages: `ln -s "$PWD/vim" ~/.vim/pack/drax/start/drax`
   (Neovim: `~/.local/share/nvim/site/pack/drax/start/drax`)
 
