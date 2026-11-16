@@ -1,0 +1,52 @@
+{
+  "Function": {
+    "prefix": "fun",
+    "body": ["fun ${1:name}(${2:args}) do", "\t$0", "end"],
+    "description": "Named function"
+  },
+  "Anonymous function": {
+    "prefix": "lam",
+    "body": "fun (${1:x}) ${2:x} end",
+    "description": "Anonymous function"
+  },
+  "If": {
+    "prefix": "if",
+    "body": ["if (${1:cond}) do", "\t$0", "end"],
+    "description": "if block"
+  },
+  "If else": {
+    "prefix": "ife",
+    "body": ["if (${1:cond}) do", "\t$2", "else", "\t$0", "end"],
+    "description": "if/else block"
+  },
+  "Import": {
+    "prefix": "imp",
+    "body": "${1:mod} = import('${2:path}')",
+    "description": "Import a module"
+  },
+  "Export": {
+    "prefix": "exp",
+    "body": "export({ ${1:name}: ${2:value} })",
+    "description": "Export a value"
+  },
+  "Assert": {
+    "prefix": "assert",
+    "body": "assert(${1:cond}, \"${2:message}\")",
+    "description": "assert"
+  },
+  "Print": {
+    "prefix": "print",
+    "body": "print(${1:value})",
+    "description": "print"
+  },
+  "Map": {
+    "prefix": "map",
+    "body": "List.map(${1:list}, fun (${2:x}) ${3:x} end)",
+    "description": "List.map"
+  },
+  "Filter": {
+    "prefix": "filter",
+    "body": "List.filter(${1:list}, fun (${2:x}) ${3:true} end)",
+    "description": "List.filter"
+  }
+}

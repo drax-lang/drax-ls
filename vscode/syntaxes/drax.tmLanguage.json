@@ -1,0 +1,121 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Drax",
+  "scopeName": "source.drax",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#mstring" },
+    { "include": "#dstring" },
+    { "include": "#sstring" },
+    { "include": "#number" },
+    { "include": "#function-def" },
+    { "include": "#keyword" },
+    { "include": "#constant" },
+    { "include": "#builtin-function" },
+    { "include": "#module-call" },
+    { "include": "#module" },
+    { "include": "#frame-key" },
+    { "include": "#operator" },
+    { "include": "#function-call" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.number-sign.drax",
+      "match": "#.*$"
+    },
+    "escape": {
+      "name": "constant.character.escape.drax",
+      "match": "\\\\."
+    },
+    "mstring": {
+      "name": "string.quoted.triple.drax",
+      "begin": "\"\"\"",
+      "end": "\"\"\"",
+      "patterns": [{ "include": "#escape" }]
+    },
+    "dstring": {
+      "name": "string.quoted.double.drax",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [{ "include": "#escape" }]
+    },
+    "sstring": {
+      "name": "string.quoted.single.drax",
+      "begin": "'",
+      "end": "'",
+      "patterns": [{ "include": "#escape" }]
+    },
+    "number": {
+      "patterns": [
+        { "name": "constant.numeric.hex.drax", "match": "\\b0x[0-9a-fA-F]+\\b" },
+        { "name": "constant.numeric.binary.drax", "match": "\\b0b[01]+\\b" },
+        { "name": "constant.numeric.octal.drax", "match": "\\b0o[0-7]+\\b" },
+        { "name": "constant.numeric.decimal.drax", "match": "\\b[0-9]+(\\.[0-9]+)?\\b" }
+      ]
+    },
+    "function-def": {
+      "match": "\\b(fun)\\s+([A-Za-z_][A-Za-z0-9_]*\\??)",
+      "captures": {
+        "1": { "name": "keyword.declaration.function.drax" },
+        "2": { "name": "entity.name.function.drax" }
+      }
+    },
+    "keyword": {
+      "patterns": [
+        { "name": "keyword.control.drax", "match": "\\b(if|else|do|end|return)\\b" },
+        { "name": "keyword.declaration.function.drax", "match": "\\bfun\\b" },
+        { "name": "keyword.control.import.drax", "match": "\\b(import|export|as)\\b" },
+        { "name": "keyword.operator.logical.drax", "match": "\\b(and|or)\\b" }
+      ]
+    },
+    "constant": {
+      "name": "constant.language.drax",
+      "match": "\\b(true|false|nil)\\b"
+    },
+    "builtin-function": {
+      "name": "support.function.builtin.drax",
+      "match": "\\b(assert|typeof|sleep|read|print|inspect|help)(?=\\s*\\()"
+    },
+    "module-call": {
+      "match": "\\b([A-Z][A-Za-z0-9_]*)(\\.)([A-Za-z_][A-Za-z0-9_]*\\??)(?=\\s*\\()",
+      "captures": {
+        "1": { "name": "support.class.module.drax" },
+        "2": { "name": "punctuation.accessor.drax" },
+        "3": { "name": "support.function.drax" }
+      }
+    },
+    "module": {
+      "name": "support.class.module.drax",
+      "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
+    },
+    "frame-key": {
+      "match": "\\b([A-Za-z_][A-Za-z0-9_]*\\??)(?=\\s*:(?!:))",
+      "captures": {
+        "1": { "name": "variable.other.property.drax" }
+      }
+    },
+    "operator": {
+      "patterns": [
+        { "name": "keyword.operator.pipe.drax", "match": "\\|>" },
+        { "name": "keyword.operator.concat.drax", "match": "\\+\\+" },
+        { "name": "keyword.operator.comparison.drax", "match": "==|!=|<=|>=|<<|>>|<|>" },
+        { "name": "keyword.operator.scope.drax", "match": "::" },
+        { "name": "keyword.operator.assignment.drax", "match": "=" },
+        { "name": "keyword.operator.arithmetic.drax", "match": "[+\\-*/&]" },
+        { "name": "keyword.operator.logical.drax", "match": "!" }
+      ]
+    },
+    "function-call": {
+      "name": "entity.name.function.call.drax",
+      "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\??(?=\\s*\\()"
+    },
+    "punctuation": {
+      "patterns": [
+        { "name": "punctuation.separator.comma.drax", "match": "," },
+        { "name": "punctuation.accessor.drax", "match": "\\." },
+        { "name": "punctuation.separator.colon.drax", "match": ":" }
+      ]
+    }
+  }
+}

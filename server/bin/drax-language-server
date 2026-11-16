@@ -1,0 +1,3 @@
+#!/usr/bin/env node
+process.argv.includes("--stdio") || process.argv.push("--stdio");
+require("../src/server.js");
