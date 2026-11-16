@@ -1,0 +1,15 @@
+{
+  "name": "Drax Graph",
+  "scopeName": "source.dgraph",
+  "patterns": [
+    { "name": "markup.heading.dgraph", "match": "^#dcpg\\b.*$" },
+    { "match": "^(kw|fn|mod|op\\.[A-Za-z]+)\\b", "name": "keyword.control.dgraph" },
+    { "match": "^([Ffgiaec])(\\d*)\\b", "captures": { "1": { "name": "keyword.control.dgraph" }, "2": { "name": "constant.numeric.dgraph" } } },
+    { "name": "constant.other.file.dgraph", "match": "\\bF\\d+\\b" },
+    { "name": "entity.name.function.dgraph", "match": "\\bf\\d+\\b" },
+    { "name": "support.function.builtin.dgraph", "match": "\\b[bm]:[A-Za-z_.?]+/\\d+(,\\d+)*" },
+    { "name": "entity.name.function.dgraph", "match": "\\??[A-Za-z_][A-Za-z0-9_?]*/\\d+" },
+    { "name": "constant.numeric.dgraph", "match": "\\b\\d+(-\\d+)?\\b" },
+    { "name": "keyword.operator.dgraph", "match": "\\^f\\d+|!parse-error" }
+  ]
+}

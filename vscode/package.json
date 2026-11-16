@@ -28,6 +28,20 @@
           "light": "./images/file-icon.svg",
           "dark": "./images/file-icon.svg"
         }
+      },
+      {
+        "id": "dgraph",
+        "aliases": [
+          "Drax Graph",
+          "dgraph"
+        ],
+        "extensions": [
+          ".dgraph"
+        ],
+        "icon": {
+          "light": "./images/graph-icon.svg",
+          "dark": "./images/graph-icon.svg"
+        }
       }
     ],
     "grammars": [
@@ -35,6 +49,11 @@
         "language": "drax",
         "scopeName": "source.drax",
         "path": "./syntaxes/drax.tmLanguage.json"
+      },
+      {
+        "language": "dgraph",
+        "scopeName": "source.dgraph",
+        "path": "./syntaxes/dgraph.tmLanguage.json"
       }
     ],
     "snippets": [

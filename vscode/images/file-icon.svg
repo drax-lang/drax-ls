@@ -1,12 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <g stroke="#3e2410" stroke-width="6" stroke-linejoin="round">
-    <circle cx="14" cy="17" r="10" fill="#3e2410"/>
-    <circle cx="50" cy="17" r="10" fill="#3e2410"/>
-    <circle cx="32" cy="37" r="24" fill="#3e2410"/>
-  </g>
-  <g fill="#9a6232">
-    <circle cx="14" cy="17" r="10"/>
-    <circle cx="50" cy="17" r="10"/>
-    <circle cx="32" cy="37" r="24"/>
-  </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 64 64"
+   width="64"
+   height="64"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <path
+     d="m 24.860004,45 h 5.6 V 15.84 h -5.6 V 26.2 c -1.4,-2.16 -3.24,-3.16 -5.96,-3.16 -5.16,0 -9.0800003,4.96 -9.0800003,11.48 0,2.92 0.8800003,5.88 2.3200003,7.96 1.48,2.12 4.12,3.44 6.76,3.44 2.72,0 4.56,-0.96 5.96,-3.12 z m -4.72,-17.28 c 2.84,0 4.72,2.72 4.72,6.88 0,3.92 -1.92,6.64 -4.72,6.64 -2.8,0 -4.72,-2.76 -4.72,-6.72 0,-4.04 1.92,-6.8 4.72,-6.8 z m 27.160002,6.4 7.04,-10.72 h -6.72 l -3.48,6.52 -3.52,-6.52 h -6.72 l 7.04,10.72 -7.2,10.88 h 6.72 l 3.68,-6.72 3.64,6.72 h 6.72 z"
+     id="text1"
+     style="font-weight:bold;font-size:40px;font-family:'DejaVu Sans', Verdana, sans-serif;text-anchor:middle;fill:#2368b8"
+     aria-label="dx" />
 </svg>
