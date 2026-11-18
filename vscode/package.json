@@ -2,7 +2,7 @@
   "name": "drax-lang",
   "displayName": "Drax",
   "description": "Syntax highlighting, snippets and language configuration for the Drax language",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "drax-lang",
   "license": "MIT",
   "engines": {

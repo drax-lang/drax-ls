@@ -48,5 +48,15 @@
     "prefix": "filter",
     "body": "List.filter(${1:list}, fun (${2:x}) ${3:true} end)",
     "description": "List.filter"
+  },
+  "Protected call": {
+    "prefix": "prot",
+    "body": "${1:f}?(${2:args})",
+    "description": "Protected call: a runtime error becomes an Error value"
+  },
+  "Safe pipe": {
+    "prefix": "pipes",
+    "body": "${1:value} |?> ${2:f}(${3:args})",
+    "description": "Safe pipe: skips the call when the left value is an Error"
   }
 }

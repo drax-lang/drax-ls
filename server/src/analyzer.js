@@ -224,6 +224,11 @@ class Analysis {
             scope.children.push(inner);
             inner.owner = sym;
             const params = [];
+            if (named && isOp(toks[j], "?")) {
+              // same message as the interpreter
+              this.diag(toks[j], "'?' is not allowed in names, it marks a protected call: f?(...).");
+              j++;
+            }
             if (isOp(toks[j], "(")) {
               j++;
               while (j < toks.length && !isOp(toks[j], ")")) {
@@ -330,6 +335,8 @@ class Analysis {
 
         const ref = { name: t.text, start: t.start, end: t.end, scope, sym: null };
         if (isOp(next, "(")) ref.argc = this.countArgs(i + 1);
+        // protected call: f?(args), the arguments are the same as in f(args)
+        else if (isOp(next, "?") && isOp(toks[i + 2], "(")) ref.argc = this.countArgs(i + 2);
         this.refs.push(ref);
       }
     }

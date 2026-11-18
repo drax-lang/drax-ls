@@ -100,3 +100,39 @@ test("the Drax test suite parses without diagnostics", () => {
   }
   assert.deepStrictEqual(bad, []);
 });
+
+test("safe pipe |?> and protected call f?() are tokens, '?' is not part of a name", () => {
+  const { lex } = require("../src/lexer");
+  const ops = (s) => lex(s).tokens.filter((t) => t.type === "op").map((t) => t.text);
+  assert.deepStrictEqual(ops("x |?> f()"), ["|?>", "(", ")"]);
+  assert.deepStrictEqual(ops("x |> f()"), ["|>", "(", ")"]);
+  const t = lex("f?(1)").tokens.map((x) => [x.type, x.text]);
+  assert.deepStrictEqual(t, [["id", "f"], ["op", "?"], ["op", "("], ["num", "1"], ["op", ")"]]);
+  // a single '|' or '|?' without '>' is still invalid
+  assert.strictEqual(lex("a | b").tokens.some((x) => x.type === "error"), true);
+  assert.strictEqual(lex("a |? b").tokens.some((x) => x.type === "error"), true);
+});
+
+test("protected call resolves the function by its arguments", () => {
+  const a = analyze(`fun add(a) do a end
+fun add(a, b) do a + b end
+add?(1, 2)
+add?(1)
+1 |?> add(2)
+`);
+  assert.deepStrictEqual(msgs(a), []);
+  const refs = a.refs.filter((r) => r.name === "add");
+  assert.strictEqual(refs[0].sym.arity, 2);
+  assert.strictEqual(refs[1].sym.arity, 1);
+});
+
+test("'?' is not allowed in a function name", () => {
+  assert.match(msgs(analyze("fun is_ok?(x) do x end"))[0], /'\?' is not allowed in names/);
+  assert.deepStrictEqual(msgs(analyze("fun is_ok(x) do x end\nis_ok?(1)\n")), []);
+});
+
+test("Error module and global are known builtins", () => {
+  const { GLOBALS, MODULES } = require("../src/builtins");
+  assert.strictEqual(GLOBALS.Error, 1);
+  assert.deepStrictEqual(Object.keys(MODULES.Error).sort(), ["is", "message", "or_else", "payload"]);
+});

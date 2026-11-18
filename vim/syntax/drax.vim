@@ -1,6 +1,6 @@
 if exists('b:current_syntax') | finish | endif
 
-syn iskeyword @,48-57,_,?
+syn iskeyword @,48-57,_
 
 syn keyword draxKeyword    if else do end return
 syn keyword draxFun        fun nextgroup=draxFunName skipwhite
@@ -9,17 +9,18 @@ syn keyword draxOperatorKw and or
 syn keyword draxConstant   true false nil
 syn keyword draxBuiltin    assert typeof sleep read print inspect help
 
-syn match draxFunName      '\<[a-zA-Z_][a-zA-Z0-9_]*?\=' contained
+syn match draxFunName      '\<[a-zA-Z_][a-zA-Z0-9_]*' contained
 syn match draxModule       '\<[A-Z][A-Za-z0-9_]*\>'
-syn match draxModuleFn     '\.\@<=[a-zA-Z_][a-zA-Z0-9_]*?\=\ze\s*('
-syn match draxFrameKey     '\<[a-zA-Z_][a-zA-Z0-9_]*?\=\ze\s*:\(:\)\@!'
+syn match draxModuleFn     '\.\@<=[a-zA-Z_][a-zA-Z0-9_]*\ze?\=\s*('
+syn match draxFrameKey     '\<[a-zA-Z_][a-zA-Z0-9_]*\ze\s*:\(:\)\@!'
+syn match draxProtected    '[a-zA-Z0-9_]\@<=?\ze\s*('
 
 syn match draxNumber       '\<[0-9]\+\(\.[0-9]\+\)\=\>'
 syn match draxNumber       '\<0x[0-9a-fA-F]\+\>'
 syn match draxNumber       '\<0b[01]\+\>'
 syn match draxNumber       '\<0o[0-7]\+\>'
 
-syn match draxOperator     '|>\|++\|==\|!=\|<=\|>=\|<<\|>>\|::\|[-+*/&<>=!]'
+syn match draxOperator     '|?>\||>\|++\|==\|!=\|<=\|>=\|<<\|>>\|::\|[-+*/&<>=!]'
 
 syn match draxEscape       '\\.' contained
 syn region draxString      start=+'+ skip=+\\.+ end=+'+ contains=draxEscape
@@ -41,6 +42,7 @@ hi def link draxModuleFn   Function
 hi def link draxFrameKey   Identifier
 hi def link draxNumber     Number
 hi def link draxOperator   Operator
+hi def link draxProtected  Operator
 hi def link draxEscape     SpecialChar
 hi def link draxString     String
 hi def link draxTodo       Todo

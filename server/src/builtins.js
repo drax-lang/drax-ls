@@ -2,6 +2,7 @@
 "use strict";
 
 const GLOBALS = {
+  "Error": 1,
   "assert": 2,
   "typeof": 1,
   "sleep": 1,
@@ -29,6 +30,20 @@ const MODULES = {
       1
     ],
     "pmkdir": [
+      2
+    ]
+  },
+  "Error": {
+    "is": [
+      1
+    ],
+    "payload": [
+      1
+    ],
+    "message": [
+      1
+    ],
+    "or_else": [
       2
     ]
   },

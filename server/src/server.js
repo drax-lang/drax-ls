@@ -209,7 +209,7 @@ connection.onRenameRequest((p) => {
   const doc = documents.get(uri);
   const ctx = ctxOf(uri);
   if (!doc || !ctx) return null;
-  if (!/^[A-Za-z_][A-Za-z0-9_]*\??$/.test(p.newName)) return null;
+  if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(p.newName)) return null;
   const sym = ctx.analysis.symbolAt(doc.offsetAt(p.position));
   if (!sym) return null;
   return {

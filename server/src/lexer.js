@@ -6,7 +6,8 @@ const KEYWORDS = new Set([
   "true", "import", "export", "return",
 ]);
 
-const isAlpha = (c) => (c >= "a" && c <= "z") || (c >= "A" && c <= "Z") || c === "_" || c === "?";
+// "?" is not part of a name: it marks a protected call, f?(...), and the safe pipe |?>
+const isAlpha = (c) => (c >= "a" && c <= "z") || (c >= "A" && c <= "Z") || c === "_";
 const isDigit = (c) => c >= "0" && c <= "9";
 const isHex = (c) => /[0-9a-fA-F]/.test(c);
 const isBin = (c) => c === "0" || c === "1";
@@ -113,13 +114,20 @@ function lex(src) {
       continue;
     }
 
+    // the safe pipe: skips the call when the left value is an Error
+    if (c === "|" && src[i + 1] === "?" && src[i + 2] === ">") {
+      i += 3;
+      push("op", start, i);
+      continue;
+    }
+
     const two = src.slice(i, i + 2);
     if (["++", "::", "|>", "!=", "==", "<<", "<=", ">>", ">="].includes(two)) {
       i += 2;
       push("op", start, i);
       continue;
     }
-    if ("+-&*/()[]{},:.!=<>".includes(c)) {
+    if ("+-&*/()[]{},:.!=<>?".includes(c)) {
       i++;
       push("op", start, i);
       continue;

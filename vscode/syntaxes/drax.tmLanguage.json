@@ -55,7 +55,7 @@
       ]
     },
     "function-def": {
-      "match": "\\b(fun)\\s+([A-Za-z_][A-Za-z0-9_]*\\??)",
+      "match": "\\b(fun)\\s+([A-Za-z_][A-Za-z0-9_]*)",
       "captures": {
         "1": { "name": "keyword.declaration.function.drax" },
         "2": { "name": "entity.name.function.drax" }
@@ -78,11 +78,12 @@
       "match": "\\b(assert|typeof|sleep|read|print|inspect|help)(?=\\s*\\()"
     },
     "module-call": {
-      "match": "\\b([A-Z][A-Za-z0-9_]*)(\\.)([A-Za-z_][A-Za-z0-9_]*\\??)(?=\\s*\\()",
+      "match": "\\b([A-Z][A-Za-z0-9_]*)(\\.)([A-Za-z_][A-Za-z0-9_]*)(\\?)?(?=\\s*\\()",
       "captures": {
         "1": { "name": "support.class.module.drax" },
         "2": { "name": "punctuation.accessor.drax" },
-        "3": { "name": "support.function.drax" }
+        "3": { "name": "support.function.drax" },
+        "4": { "name": "keyword.operator.protected-call.drax" }
       }
     },
     "module": {
@@ -90,13 +91,14 @@
       "match": "\\b[A-Z][A-Za-z0-9_]*\\b"
     },
     "frame-key": {
-      "match": "\\b([A-Za-z_][A-Za-z0-9_]*\\??)(?=\\s*:(?!:))",
+      "match": "\\b([A-Za-z_][A-Za-z0-9_]*)(?=\\s*:(?!:))",
       "captures": {
         "1": { "name": "variable.other.property.drax" }
       }
     },
     "operator": {
       "patterns": [
+        { "name": "keyword.operator.pipe.safe.drax", "match": "\\|\\?>" },
         { "name": "keyword.operator.pipe.drax", "match": "\\|>" },
         { "name": "keyword.operator.concat.drax", "match": "\\+\\+" },
         { "name": "keyword.operator.comparison.drax", "match": "==|!=|<=|>=|<<|>>|<|>" },
@@ -107,8 +109,11 @@
       ]
     },
     "function-call": {
-      "name": "entity.name.function.call.drax",
-      "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\??(?=\\s*\\()"
+      "match": "\\b([A-Za-z_][A-Za-z0-9_]*)(\\?)?(?=\\s*\\()",
+      "captures": {
+        "1": { "name": "entity.name.function.call.drax" },
+        "2": { "name": "keyword.operator.protected-call.drax" }
+      }
     },
     "punctuation": {
       "patterns": [
